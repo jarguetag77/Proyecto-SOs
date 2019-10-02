@@ -95,6 +95,11 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel5.setText("USO MEMORIA");
 
         jButton3.setText("ACTUALIZAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,12 +141,12 @@ public class NewJFrame extends javax.swing.JFrame {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
+                .addContainerGap(48, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
@@ -151,11 +156,10 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane4)
-                        .addComponent(jScrollPane1)
-                        .addComponent(jScrollPane3)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane4)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane3)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE))
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -174,19 +178,19 @@ public class NewJFrame extends javax.swing.JFrame {
 
 public void buscar(){
     list1.setModel(new DefaultListModel());
-            DefaultListModel m1 = (DefaultListModel) list1.getModel();
+            DefaultListModel  Variable1 = (DefaultListModel) list1.getModel();
             list2.setModel(new DefaultListModel());
-            DefaultListModel m2 = (DefaultListModel) list2.getModel();
+            DefaultListModel Variable2 = (DefaultListModel) list2.getModel();
             list3.setModel(new DefaultListModel());
-            DefaultListModel m3 = (DefaultListModel) list3.getModel();
+            DefaultListModel Variable3 = (DefaultListModel) list3.getModel();
             list4.setModel(new DefaultListModel());
-            DefaultListModel m4 = (DefaultListModel) list4.getModel();
+            DefaultListModel Variable4 = (DefaultListModel) list4.getModel();
             list5.setModel(new DefaultListModel());
-            DefaultListModel m5 = (DefaultListModel) list5.getModel();
+            DefaultListModel Variable5 = (DefaultListModel) list5.getModel();
             
         
             int i=1;
-            String piv = "";
+            String Stvariable = "";
             
             
                 try {
@@ -199,20 +203,20 @@ public void buscar(){
                 if(i>=4){
                     
                     String[] sep = line.split("\\s+");
-                    piv = sep[0].toString();
-                    m1.addElement(piv);
+                    Stvariable = sep[0].toString();
+                    Variable1.addElement(Stvariable);
                     
-                    piv = sep[1].toString();
-                    m2.addElement(piv);
+                    Stvariable = sep[1].toString();
+                    Variable2.addElement(Stvariable);
                     
-                    piv = sep[2].toString();
-                    m3.addElement(piv);
+                    Stvariable = sep[2].toString();
+                    Variable3.addElement(Stvariable);
                     
-                    piv = sep[3].toString();
-                    m4.addElement(piv);
+                    Stvariable = sep[3].toString();
+                    Variable4.addElement(Stvariable);
                     
-                    piv = sep[4].toString();
-                    m5.addElement(piv);
+                    Stvariable = sep[4].toString();
+                    Variable5.addElement(Stvariable);
 
 
                 }
@@ -220,8 +224,8 @@ public void buscar(){
                 i++;
             }
             input.close();
-        } catch (Exception err) {
-            err.printStackTrace();
+        } catch (Exception error1) {
+            error1.printStackTrace();
         }
         
 }
@@ -246,6 +250,10 @@ public void terminarP(){
         
         buscar();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     
     /**
