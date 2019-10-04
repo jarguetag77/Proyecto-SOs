@@ -27,6 +27,8 @@ public class NewJFrame extends javax.swing.JFrame {
     public NewJFrame() {
         
         initComponents();
+    
+        Boton_Actualiz.setVisible(false);   //boton de actualizar invisible    
         
     }
 
@@ -40,9 +42,9 @@ public class NewJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        Boton_Actualiz = new javax.swing.JButton();
+        Boton_Terminar_P = new javax.swing.JButton();
+        Boton_Buscar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -67,22 +69,27 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 204));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/todo/reload.png"))); // NOI18N
-        jButton3.setText("ACTUALIZAR");
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/todo/restriction-ends.png"))); // NOI18N
-        jButton2.setText("TERMINAR PROCESO");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Boton_Actualiz.setIcon(new javax.swing.ImageIcon(getClass().getResource("/todo/reload.png"))); // NOI18N
+        Boton_Actualiz.setText("ACTUALIZAR");
+        Boton_Actualiz.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                Boton_ActualizActionPerformed(evt);
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/todo/search.png"))); // NOI18N
-        jButton1.setText("BUSCAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Boton_Terminar_P.setIcon(new javax.swing.ImageIcon(getClass().getResource("/todo/restriction-ends.png"))); // NOI18N
+        Boton_Terminar_P.setText("TERMINAR PROCESO");
+        Boton_Terminar_P.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                Boton_Terminar_PActionPerformed(evt);
+            }
+        });
+
+        Boton_Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/todo/search.png"))); // NOI18N
+        Boton_Buscar.setText("BUSCAR");
+        Boton_Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Boton_BuscarActionPerformed(evt);
             }
         });
 
@@ -99,11 +106,11 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Boton_Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(Boton_Terminar_P)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3))
+                        .addComponent(Boton_Actualiz))
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel8))
@@ -118,15 +125,21 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Boton_Actualiz, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Boton_Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Boton_Terminar_P, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(0, 204, 102));
 
+        list1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        list1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                list1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(list1);
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 24)); // NOI18N
@@ -137,16 +150,19 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 24)); // NOI18N
         jLabel2.setText("PID");
 
+        list3.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane4.setViewportView(list3);
 
         jLabel3.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 24)); // NOI18N
         jLabel3.setText("NOMBRE SESION");
 
+        list4.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane5.setViewportView(list4);
 
         jLabel4.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 24)); // NOI18N
         jLabel4.setText("NO. SESION");
 
+        list5.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane6.setViewportView(list5);
 
         jLabel5.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 24)); // NOI18N
@@ -159,29 +175,33 @@ public class NewJFrame extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel2)
+                        .addGap(35, 35, 35)
                         .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel5))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(15, 15, 15)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(78, 78, 78)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(48, 48, 48)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jLabel6))
         );
         jPanel2Layout.setVerticalGroup(
@@ -196,11 +216,11 @@ public class NewJFrame extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addGap(7, 7, 7)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addComponent(jScrollPane3)
                     .addComponent(jScrollPane4)
                     .addComponent(jScrollPane5)
-                    .addComponent(jScrollPane6))
+                    .addComponent(jScrollPane6)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -226,14 +246,17 @@ public class NewJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            buscar();
+    private void Boton_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_BuscarActionPerformed
+        //boton buscar, se llama a la funcion de buscar    
+        Boton_Actualiz.setVisible(true);
+        buscar();
+        Boton_Buscar.setEnabled(false);
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_Boton_BuscarActionPerformed
 
-public void buscar(){
-    list1.setModel(new DefaultListModel());
-            DefaultListModel m1 = (DefaultListModel) list1.getModel();
+public void buscar(){                                                           // FUNCION PARA BUSCAR PROGRAMAS EJECUTANDOSE EN EL ORDENADOR
+            list1.setModel(new DefaultListModel());                             //
+            DefaultListModel m1 = (DefaultListModel) list1.getModel();          
             list2.setModel(new DefaultListModel());
             DefaultListModel m2 = (DefaultListModel) list2.getModel();
             list3.setModel(new DefaultListModel());
@@ -241,44 +264,49 @@ public void buscar(){
             list4.setModel(new DefaultListModel());
             DefaultListModel m4 = (DefaultListModel) list4.getModel();
             list5.setModel(new DefaultListModel());
-            DefaultListModel m5 = (DefaultListModel) list5.getModel();
+            DefaultListModel m5 = (DefaultListModel) list5.getModel();          //codigo para obtener el modelo de las cinco listas del frame para ingresasr los datos
             
         
-            int i=1;
-            String piv = "";
+            int i=1,contador=1;                //variables contadora para if
+            String piv = "";        //variable pivotal para ingresar datos a las listas
+            
             
             
                 try {
-            String line;
-            Process p = Runtime.getRuntime().exec(System.getenv("windir") +"\\system32\\"+"tasklist.exe");
-            BufferedReader input =
-                    new BufferedReader(new InputStreamReader(p.getInputStream()));
-            while ((line = input.readLine()) != null) {
-
-                if(i>=4){
                     
-                    String[] sep = line.split("\\s+");
+                    
+            String linea;               //cadena de caracteres que se usará para la obtencion de los datos de programas ejecutando           
+            
+            Process p = Runtime.getRuntime().exec(System.getenv("windir") +"\\system32\\"+"tasklist.exe");          //metodo para obtener todos los programas ejecutandose
+            BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            while ((linea = input.readLine()) != null) {                                                        //ciclo while utilizado para leer cada linea del buffer
+
+
+                if(i>=5){                                                                       //ciclo if para el ingreso de datos a las tablas
+                    
+                    String[] sep = linea.split("\\s+");                                         //se separan todos los datos del buffer en la linea, se eliminan todos los espacios en blanco para ingresarlos de forma mas ordenada a las tablas
                     piv = sep[0].toString();
-                    m1.addElement(piv);
+                    m1.addElement(contador+".   "+piv);                                                         //se ingresa a la tabla 1
                     
                     piv = sep[1].toString();
-                    m2.addElement(piv);
+                    m2.addElement(contador+".   "+piv);                                                         //se ingresa a la tabla 2
                     
                     piv = sep[2].toString();
-                    m3.addElement(piv);
+                    m3.addElement(contador+".   "+piv);                                                         //se ingresa a la tabla 3
                     
                     piv = sep[3].toString();
-                    m4.addElement(piv);
+                    m4.addElement(contador+".   "+piv);                                                         //se ingresa a la tabla 4
                     
                     piv = sep[4].toString();
-                    m5.addElement(piv);
-
+                    m5.addElement(contador+".   "+piv+" KB");                                                         //se ingresa a la tabla 5
+                    
+                    contador++;
 
                 }
 
                 i++;
             }
-            input.close();
+            input.close();              //se cierra el buffer
         } catch (Exception err) {
             err.printStackTrace();
         }
@@ -286,25 +314,50 @@ public void buscar(){
 }
     
 public void terminarP(){
-    try {
-            String selec = list1.getSelectedValue();
-            Runtime.getRuntime().exec("taskkill /F /IM "+selec);
+    //boton de terminar proceso
+    
+    try {     
+            String selec = list1.getSelectedValue();                //Se selecciona el valor que esta seleccionado en la lista 1 y se almacena en el string selec
+            String[] valores = selec.split("\\s+");
+            Runtime.getRuntime().exec("taskkill /F /IM "+valores[1]);    //Comando para terminar el proceso seleccionado 
+            System.out.println(valores[1]);
                     
                     } catch (IOException ex) {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+    
+    buscar();  //se llama la funcion para actualizar tabla
 }
     
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(list1.getSelectedIndex()==-1){
+    private void Boton_Terminar_PActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_Terminar_PActionPerformed
+        if(list1.getSelectedIndex()==-1){                           //comando if para comprobar si existe algo seleccionado en la tabla1
+            
                     JOptionPane.showMessageDialog(null, "ERROR, NADA SELECCIONADO","Error", JOptionPane.INFORMATION_MESSAGE);
 
         }else{
-            terminarP();
+            terminarP();                                            //si lo hay, se manda a llamar a la funcion
         }
         
         buscar();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_Boton_Terminar_PActionPerformed
+
+    private void Boton_ActualizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_ActualizActionPerformed
+        buscar();  //boton actualizar
+    }//GEN-LAST:event_Boton_ActualizActionPerformed
+
+    private void list1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list1MouseClicked
+        int indice = list1.getSelectedIndex();
+        list2.ensureIndexIsVisible(indice);
+        list2.setSelectedIndex(indice);
+        list3.ensureIndexIsVisible(indice);
+        list3.setSelectedIndex(indice);
+        list4.ensureIndexIsVisible(indice);
+        list4.setSelectedIndex(indice);
+        list5.ensureIndexIsVisible(indice);
+        list5.setSelectedIndex(indice);
+        
+        
+    }//GEN-LAST:event_list1MouseClicked
 
     
     /**
@@ -343,9 +396,9 @@ public void terminarP(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton Boton_Actualiz;
+    private javax.swing.JButton Boton_Buscar;
+    private javax.swing.JButton Boton_Terminar_P;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
